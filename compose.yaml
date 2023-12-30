@@ -1,0 +1,19 @@
+version: "3.5"
+
+services:
+    frontend:
+        extends:
+            file: ../mocap-frontend/compose.yaml
+            service: frontend
+    backend:
+        extends:
+            file: ../mocap-backend/compose.yaml
+            service: backend
+    keycloak:
+        extends:
+            file: ../mocap-keycloak/compose.yaml
+            service: keycloak
+
+networks:
+    mocap:
+        driver: bridge
