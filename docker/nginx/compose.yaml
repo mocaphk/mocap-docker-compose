@@ -1,0 +1,21 @@
+version: "3.5"
+
+services:
+    nginx:
+        image: mocap/nginx
+        container_name: mocap-nginx
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        env_file:
+            - ../../.env.production
+            - ../../.env.production.local
+        networks:
+            - mocap
+        ports:
+            - "80:80"
+        restart: always
+
+networks:
+    mocap:
+        external: true
