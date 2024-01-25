@@ -50,3 +50,19 @@ A docker compose file that launch all the containers needed for mocap to work.
     ```bash
     docker-compose up
     ```
+
+## How to backup database
+
+### Backup
+
+```bash
+docker exec -t mocap-database pg_dump mocap -U admin > dump_`date +%Y-%m-%d"_"%H_%M_%S`.sql
+```
+
+and then sftp to download it.
+
+### Restore
+
+```bash
+cat <backup_file> | docker exec -i mocap-database psql mocap -U admin
+```

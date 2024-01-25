@@ -1,0 +1,26 @@
+version: "3.5"
+
+services:
+    database:
+        image: postgres:16
+        container_name: mocap-database
+        env_file:
+            - ../../.env.production
+            - ../../.env.production.local
+        environment:
+            - POSTGRES_USER=${PGUSER}
+        networks:
+            - mocap
+        ports:
+            - "5432:5432"
+        volumes:
+            - ~/postgresql/data:/var/lib/postgresql/data
+        restart: always
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER"]
+            interval: 1s
+            timeout: 5s
+            retries: 10
+networks:
+    mocap:
+        external: true
