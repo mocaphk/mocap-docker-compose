@@ -14,8 +14,11 @@ services:
             - mocap
         ports:
             - "80:80"
+            - "443:443"
         restart: always
-
+        volumes:
+            - /etc/letsencrypt/ssl/fullchain.pem:/etc/nginx/ssl/fullchain.pem
+            - /etc/letsencrypt/ssl/privkey.pem:/etc/nginx/ssl/privkey.pem
 networks:
     mocap:
         external: true

@@ -9,10 +9,16 @@ services:
         extends:
             file: ../mocap-frontend/compose.yaml
             service: frontend
+        depends_on:
+            - backend
+            - keycloak
     backend:
         extends:
             file: ../mocap-backend/compose.yaml
             service: backend
+        depends_on:
+            - keycloak
+            - database
     keycloak:
         extends:
             file: ../mocap-keycloak/compose.yaml
@@ -21,6 +27,10 @@ services:
         extends:
             file: ./docker/nginx/compose.yaml
             service: nginx
+        depends_on:
+            - frontend
+            - backend
+            - keycloak
 networks:
     mocap:
         driver: bridge

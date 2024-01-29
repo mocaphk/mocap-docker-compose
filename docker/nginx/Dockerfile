@@ -1,6 +1,6 @@
 FROM nginx:1.25.3-alpine
 
-COPY default.conf /etc/nginx/conf.d/default.conf.template
+COPY default-subdomain.conf /etc/nginx/conf.d/default.conf.template
 
 COPY docker-entrypoint.sh /
 

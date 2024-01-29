@@ -51,6 +51,30 @@ A docker compose file that launch all the containers needed for mocap to work.
     docker-compose up
     ```
 
+## Setting up HTTPS
+
+Let’s Encrypt is used for HTTPS connection.
+
+1. Install certbot
+
+```bash
+sudo apt install certbot
+```
+
+2. Obtain the TLS/SSL certificate from the Let’s Encrypt
+
+```bash
+sudo certbot certonly -d <domain1> -d <domain2>
+```
+
+3. Copy The TSL/SSL Certificates
+
+```bash
+sudo mkdir -p /etc/letsencrypt/ssl
+sudo cp -r -L /etc/letsencrypt/live/<domain>/fullchain.pem /etc/letsencrypt/ssl/
+sudo cp -r -L /etc/letsencrypt/live/<domain>/privkey.pem /etc/letsencrypt/ssl/
+```
+
 ## How to backup database
 
 ### Backup
